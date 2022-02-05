@@ -40,6 +40,12 @@ For running the `app.js` which contains the javascript code to run smart contrac
 npm run app-run
 ```
 
+## Checklist
+
+* [x] Local node deploy and run smart contract methods from javascript file.
+* [ ] Check deployment on Testnet
+* [ ] Whenever smart contract gets deployed, rollup or other bundler should copy the abi from `artifacts/contracts/<solidity file>.sol` file, and just delete the config file for that contract and copy it to `config/<solidity filename>.config.js`
+
 ## Cons of Running on Local node
 
 When you re-run the below command:

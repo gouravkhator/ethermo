@@ -7,7 +7,7 @@ const CONTACTS_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // this i
     npx hardhat run --network localhost scripts/deploy.js
 */
 
-// below abi is copied from artifacts/contracts/Contact.sol/Contacts.json
+// below abi is copied from artifacts/contracts/Contacts.sol/Contacts.json
 const CONTACTS_ABI = [
     {
         "inputs": [],
