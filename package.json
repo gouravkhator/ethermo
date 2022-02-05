@@ -1,0 +1,31 @@
+{
+  "name": "ethermo",
+  "version": "1.0.0",
+  "description": "Playing with Hardhat Demo App",
+  "main": "app.js",
+  "scripts": {
+    "localnet": "npx hardhat node",
+    "deploy-sc": "npx hardhat run --network localhost scripts/deploy.js",
+    "app-run": "node app.js"
+  },
+  "keywords": [
+    "hardhat",
+    "ethereum",
+    "blockchain",
+    "solidity"
+  ],
+  "author": "Gourav Khator",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.4",
+    "@nomiclabs/hardhat-waffle": "^2.0.2",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.4",
+    "hardhat": "^2.8.3",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "web3": "^1.7.0"
+  }
+}
