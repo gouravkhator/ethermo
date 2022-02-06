@@ -1,14 +1,17 @@
 const Web3 = require('web3');
-const { CONTACTS_ABI, CONTACTS_ADDRESS } = require('./config/Contacts.config');
+const { CONTACTS_ABI, CONTACTS_ADDRESS } = require('./config/Contacts.config.json');
 
 if (typeof web3 !== 'undefined') {
     var web3 = new Web3(web3.currentProvider);
 } else {
+    // TODO: the url should be dynamic, as it should also run on hosted server too..
     var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 }
 
 (async () => {
+    // to call methods which change blockchain state, we need accounts on which we need to run transaction 
     const accounts = await web3.eth.getAccounts();
+
     if(accounts.length === 0){
         console.error('No accounts present.. Please run local or online node and check accounts..');
         process.exit(1);
@@ -31,11 +34,13 @@ if (typeof web3 !== 'undefined') {
     
     console.log('before adding gourav to list..');
     await logContactList();
+    
     // createContact is for modifying the state of the contract, that is why send() is used instead of just call()
     await contactList.methods.createContact("Gourav Khator", "1564892").send({
         from: accounts[0]
         // this is the account address, on which I want this transaction to run
     });
-    console.log('after adding gourav to list..');
+
+    console.log('\nafter adding gourav to list..');
     await logContactList();
 })();

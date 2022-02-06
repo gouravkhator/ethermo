@@ -4,6 +4,8 @@
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
 const hre = require("hardhat");
+const fs = require("fs/promises");
+const path = require("path");
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -21,15 +23,23 @@ async function main() {
 
   // console.log("Greeter deployed to:", greeter.address);
   const Contacts = await hre.ethers.getContractFactory("Contacts");
-  const contacts = await Contacts.deploy();
+  const contactsContract = await Contacts.deploy(); // deploy the smart contract, which compiles first and then deploys..
 
-  await contacts.deployed();
+  await contactsContract.deployed();
 
-  console.log("Contacts deployed to:", contacts.address);
+  const artifact = await hre.artifacts.readArtifact('Contacts'); // for getting abi from compiled contracts' artifacts
+
+  const configPath = path.join(__dirname, "../config/Contacts.config.json");
+  await fs.writeFile(configPath, JSON.stringify({
+    CONTACTS_ADDRESS: contactsContract.address,
+    CONTACTS_ABI: artifact.abi,
+  }));
+
+  console.log(`\nSaved ABI and smart contract address for Contacts smart contract to below path:\n${configPath}\n`);
+  console.log(`Contacts smart contract is deployed to address: ${contactsContract.address}`);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+// Hardhat recommends this pattern to be able to use async/await everywhere & properly handle errors.
 main()
   .then(() => process.exit(0))
   .catch((error) => {

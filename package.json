@@ -4,9 +4,9 @@
   "description": "Playing with Hardhat Demo App",
   "main": "app.js",
   "scripts": {
-    "localnet": "npx hardhat node",
+    "localnode": "npx hardhat node",
     "deploy-sc": "npx hardhat run --network localhost scripts/deploy.js",
-    "app-run": "node app.js"
+    "app-start": "node app.js"
   },
   "keywords": [
     "hardhat",

@@ -4,6 +4,8 @@ coverage
 coverage.json
 typechain
 
-#Hardhat files
+# Hardhat files
 cache
 artifacts
+# smart contracts' configs like abi and address changes, when we compile and deploy, so remove that from git
+config/*.config.json

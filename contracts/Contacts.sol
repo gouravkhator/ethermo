@@ -1,6 +1,8 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
+import "hardhat/console.sol";
+
 contract Contacts {
   uint public count = 0; // state variable
 
@@ -11,7 +13,7 @@ contract Contacts {
   }
 
   constructor() {
-    createContact('Zafar Saleem', '123123123');
+    createContact('Vanshika Khator', '123123123');
   }
 
   mapping(uint => Contact) public contacts;
